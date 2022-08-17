@@ -6,11 +6,11 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:47:31 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/16 16:33:44 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/17 10:58:39 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "Includes/so_long.h"
 
 int keyhandler(int keycode, t_window *window)
 {

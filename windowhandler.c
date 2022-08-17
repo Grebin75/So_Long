@@ -6,11 +6,11 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:39:36 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/16 16:44:48 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/17 17:03:32 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "Includes/so_long.h"
 
 void closewin(t_window *window)
 {
@@ -39,8 +39,8 @@ void createplayer(t_window *window)
 	t_player *player;
 
 	player = &window->player;
-	player->x = 10;
-	player->y = 10;
+	player->x = 0;
+	player->y = 0;
 	player->path = "./Assets/Characters/player.xpm";	
 	player->img = mlx_xpm_file_to_image(window->mlx, player->path, &player->width, &player->height);
 	mlx_put_image_to_window(window->mlx, window->win, player->img, player->x, player->y);
@@ -63,10 +63,10 @@ int creategrass(t_window *window)
 		while (grass->x < window->width)
 		{
 			mlx_put_image_to_window(window->mlx, window->win, grass->img, grass->x, grass->y);
-			grass->x += 60;
+			grass->x += 64;
 		}
 		mlx_put_image_to_window(window->mlx, window->win, grass->img, grass->x, grass->y);
-		grass->y += 60;
+		grass->y += 64;
 		
 	}
 	return (0);
@@ -81,20 +81,15 @@ t_window	*callwindow()
 
 int moveplayer(t_player *player, t_grass *grass, t_window *window, int direction)
 {
-	int tempx;
-	int tempy;
-
-	tempy = player->y;
-	tempx = player->x;
 	mlx_put_image_to_window(window->mlx, window->win, grass->img, player->x, player->y);
 	if (direction == RIGHT)
-		player->x += 60;
+		player->x += 64;
 	if (direction == LEFT)
-		player->x -= 60;
+		player->x -= 64;
 	if (direction == DOWN)
-		player->y += 60;
+		player->y += 64;
 	if (direction == UP)
-		player->y -= 60;
+		player->y -= 64;
 	mlx_put_image_to_window(window->mlx, window->win, player->img, player->x, player->y);
 	return (0);
 }

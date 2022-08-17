@@ -6,7 +6,7 @@
 #    By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 10:36:45 by hcoutinh          #+#    #+#              #
-#    Updated: 2022/08/14 12:49:57 by hcoutinh         ###   ########.fr        #
+#    Updated: 2022/08/17 14:06:59 by hcoutinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ RM			= rm -fr
 MLX			= mlx_linux/mlx_Linux.a
 NAME		=	so_long
 
-SRCS		=	so_long.c windowhandler.c hookhandler.c
+SRCS		= so_long.c windowhandler.c hookhandler.c \
+			./Getnextline/get_next_line_utils.c  \
+			./Getnextline/get_next_line.c 
 OBJS		= $(SRCS:.c=.o)
 
 
