@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:20:34 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/17 17:53:03 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/19 15:57:59 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,32 @@ typedef struct t_player{
 	int		y;
 }	t_player;
 
+typedef struct t_wall{
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+}	t_wall;
+
+typedef struct t_exit{
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+}	t_exit;
+
+typedef struct t_object{
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+}	t_object;
+
 typedef struct t_grass{
 	void	*img;
 	char	*path;
 	int		width;
 	int		height;
-	int		x;
-	int		y;
 }	t_grass;
 
 typedef struct t_map{
@@ -57,6 +76,7 @@ typedef struct t_map{
 	int	enemycount;
 	int	size;
 	int sizex;
+	char **map;
 	
 } t_map;
 typedef struct t_window{
@@ -68,13 +88,25 @@ typedef struct t_window{
 	t_player player;
 	t_grass grass;
 	t_map	map;
+	t_wall	wall;
+	t_object object;
+	t_exit exit;
 }		t_window;
 
 
+int creategrass(int y, int x, t_window *window);
+int	createwall(int y, int x, t_window *window);
+int initializeimgs(t_window *window);
+int readtocreate(char **map);
+int counterchecker(t_window *window);
+int lencompare(char **string);
+int ft_strlen(char *str);
+int	illegalchar(t_window *window, char *line);
+int firstandlastwall(char *line);
+int	codechecker(char **map);
 t_window	*callwindow();
-int creategrass(t_window *window);
-void createplayer(t_window *window);
-void createwin(t_window *window);
+int createplayer(int y, int x, t_window *window);
+void createwin(t_window *window, char **map);
 void closewin(t_window *window);
 int keyhandler(int keycode, t_window *window);
 int moveplayer(t_player *player, t_grass *grass, t_window *window, int direction);
