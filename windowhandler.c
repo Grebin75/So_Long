@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:39:36 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/19 14:33:13 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:44:55 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,21 @@
 
 void closewin(t_window *window)
 {
-	//mlx_destroy_image(window->mlx, player->img);
+	int i;
+
+	i = -1;
+	while (window->map.map[++i])
+		free(window->map.map[i]);
+	free(window->map.map);
+	mlx_destroy_image(window->mlx, window->object.img);
+	mlx_destroy_image(window->mlx, window->wall.img);
+	mlx_destroy_image(window->mlx, window->exit.img);
+	mlx_destroy_image(window->mlx, window->grass.img);
+	mlx_destroy_image(window->mlx, window->player.img);
+	mlx_destroy_window(window->mlx, window->win);
 	mlx_destroy_display(window->mlx);
-	//mlx_destroy_window(window->mlx, window->win);
+	free(window->mlx);
+	
 	exit (0);
 }
 

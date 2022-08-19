@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 10:32:59 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/19 16:03:46 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:16:55 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 	}
 	if (map)
 		map[count] = temp; 
+	printf("temp: %s", temp);
 	return (map);
 }
 
@@ -65,18 +66,18 @@ int	codechecker(char **map)
 char	**codehandler(char *path)
 {
 	int fd;
-	char **map;
+	t_window *window;
 
+	window = callwindow();
 	fd = open(path, O_RDONLY);
-	map = mapcode(fd, NULL, 0);
-	if (codechecker(map) == 0)
+	callwindow()->map.map = mapcode(fd, NULL, 0);
+	if (codechecker(window->map.map) == 0)
 		closewin(callwindow());
-	return (map);
+	return (window->map.map);
 }
 
 int main(int argc, char **argv)
 {
-	(void)argv;
 	if (argc == 2)
 		{
 			callwindow()->map.map = codehandler(argv[1]);

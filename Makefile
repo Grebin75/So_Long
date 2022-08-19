@@ -6,12 +6,12 @@
 #    By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 10:36:45 by hcoutinh          #+#    #+#              #
-#    Updated: 2022/08/19 13:42:14 by hcoutinh         ###   ########.fr        #
+#    Updated: 2022/08/19 18:29:58 by hcoutinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 			= gcc
-CFLAGS		= -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS		= -g -Wall -Wextra -Werror #-fsanitize=address
 RM			= rm -fr
 MLX			= mlx_linux/mlx_Linux.a
 NAME		=	so_long
