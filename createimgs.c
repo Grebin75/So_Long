@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 12:36:26 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/19 16:16:14 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/22 14:18:48 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int readtocreate(char **map)
 		{
 			if (mapline[x] == 'P')
 				{
-					window->player.x = (x * 64);
-					window->player.y = (y * 64);
+					window->player.x = x;
+					window->player.y = y;
 					mlx_put_image_to_window(window->mlx, window->win, window->player.img, (x * 64), (y * 64));
 				}
 			if (mapline[x] == '1')

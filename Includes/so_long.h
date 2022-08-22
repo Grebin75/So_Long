@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:20:34 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/19 15:57:59 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/22 14:14:31 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct t_exit{
 	char	*path;
 	int		width;
 	int		height;
+	int		y;
+	int		x;
 }	t_exit;
 
 typedef struct t_object{
@@ -77,8 +79,8 @@ typedef struct t_map{
 	int	size;
 	int sizex;
 	char **map;
-	
 } t_map;
+
 typedef struct t_window{
 	void	*win;
 	void	*mlx;
@@ -94,6 +96,7 @@ typedef struct t_window{
 }		t_window;
 
 
+int currentpos(int move, int direction, int y, int x);
 int creategrass(int y, int x, t_window *window);
 int	createwall(int y, int x, t_window *window);
 int initializeimgs(t_window *window);

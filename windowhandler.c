@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:39:36 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/19 18:44:55 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/22 12:05:55 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ t_window	*callwindow()
 
 int moveplayer(t_player *player, t_grass *grass, t_window *window, int direction)
 {
-	mlx_put_image_to_window(window->mlx, window->win, grass->img, player->x, player->y);
+	mlx_put_image_to_window(window->mlx, window->win, grass->img, (player->x * 64), (player->y * 64));
 	if (direction == RIGHT)
 		player->x += 64;
 	if (direction == LEFT)
 		player->x -= 64;
 	if (direction == DOWN)
-		player->y += 64;
+		player->y += 1;
 	if (direction == UP)
-		player->y -= 64;
-	mlx_put_image_to_window(window->mlx, window->win, player->img, player->x, player->y);
+		player->y -= 1;
+	mlx_put_image_to_window(window->mlx, window->win, player->img, (player->x * 64), (player->y * 64));
 	return (0);
 }

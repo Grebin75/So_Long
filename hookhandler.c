@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:47:31 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/17 10:58:39 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:15:23 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int keyhandler(int keycode, t_window *window)
 	if (keycode == ESC)
 		closewin(window);
 	if (keycode == D || keycode == RIGHT)
-		moveplayer(&window->player, &window->grass, window, RIGHT);
+		currentpos(1, RIGHT, window->player.y, window->player.x);
 	if (keycode == A || keycode == LEFT)
-		moveplayer(&window->player, &window->grass, window, LEFT);
+		currentpos(-1, LEFT, window->player.y, window->player.x);
 	if (keycode == S || keycode == DOWN)
-		moveplayer(&window->player, &window->grass, window, DOWN);
+		currentpos(1, DOWN, window->player.y, window->player.x);
 	if (keycode == W || keycode == UP)
-		moveplayer(&window->player, &window->grass, window, UP);
+		currentpos(-1, UP, window->player.y, window->player.x);
 	return (0);
 }

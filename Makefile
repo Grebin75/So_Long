@@ -6,7 +6,7 @@
 #    By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 10:36:45 by hcoutinh          #+#    #+#              #
-#    Updated: 2022/08/19 18:29:58 by hcoutinh         ###   ########.fr        #
+#    Updated: 2022/08/22 13:49:02 by hcoutinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME		=	so_long
 SRCS		= so_long.c windowhandler.c hookhandler.c mapchecker.c\
 			./Getnextline/get_next_line_utils.c  \
 			./Getnextline/get_next_line.c 		\
-			createimgs.c 
+			createimgs.c checkcurrentpos.c
 OBJS		= $(SRCS:.c=.o)
 
 
