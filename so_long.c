@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 10:32:59 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/22 14:54:59 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:21:34 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**codehandler(char *path)
 
 	window = callwindow();
 	fd = open(path, O_RDONLY);
-	callwindow()->map.map = mapcode(fd, (void *)0, 0);
+	(callwindow()->map.map) = mapcode(fd, NULL, 0);
 	if (codechecker(window->map.map) == 0)
 		closewin(callwindow());
 	return (window->map.map);

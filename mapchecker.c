@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:26:46 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/19 12:53:41 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:14:49 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 int	illegalchar(t_window *window, char *line)
 {
 	int	i;
-	
+
 	i = 0;
 	while (line[i] && line[i] != '\n')
-		{
-			if (line[i] == 'P')
-				window->map.playercount += 1;
-			if (line[i] == 'C')
-				window->map.collectablecount += 1;
-			if (line[i] == 'E')
-				window->map.exitcount += 1;
-			if (line[i] != '1' && line[i] != '0' && line[i] != 'E' \
-			 && line[i] != 'C' && line[i] != 'P')
-			 	return (0);
-			i++;
-		}
+	{
+		if (line[i] == 'P')
+			window->map.playercount += 1;
+		if (line[i] == 'C')
+			window->map.collectablecount += 1;
+		if (line[i] == 'E')
+			window->map.exitcount += 1;
+		if (line[i] != '1' && line[i] != '0' && line[i] != 'E' \
+		&& line[i] != 'C' && line[i] != 'P')
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
-int firstandlastwall(char *line)
+int	firstandlastwall(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] && line[i] != '\n')
@@ -47,9 +47,9 @@ int firstandlastwall(char *line)
 	return (1);
 }
 
-int lencompare(char **string)
+int	lencompare(char **string)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < callwindow()->map.size - 1)
@@ -61,13 +61,13 @@ int lencompare(char **string)
 	return (1);
 }
 
-int counterchecker(t_window *window)
+int	counterchecker(t_window *window)
 {
 	if (window->map.collectablecount == 0)
 		return (0);
 	if (window->map.playercount != 1)
 		return (0);
 	if (window->map.exitcount != 1)
-		return (0);	
+		return (0);
 	return (1);
 }
