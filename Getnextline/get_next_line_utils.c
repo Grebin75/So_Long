@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:57:27 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/04/12 18:58:01 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:35:43 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	len(char *s)
 	while (s && s[i])
 	{
 		if (s[i] == '\n')
-			return (i + 1);
+			return (i);
 		i++;
 	}
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:47:31 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/23 14:59:15 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:39:57 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	havecollision(int key, int y, int x, char **map)
 	{
 		if (callwindow()->map.collectablecount == 0 && map[y][x] == 'E')
 		{
-			printf("Mission Complete\n");
+			ft_printf("\033[1;34mMission Complete.\n\033[0m");
 			closewin(callwindow());
 		}
 		callwindow()->player.x = x;

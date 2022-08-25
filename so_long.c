@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 10:32:59 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/22 15:21:34 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:48:55 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**mapcode(int fd, char **map, int count)
 	return (map);
 }
 
-int	ft_strlen(char *str)
+int	ftt_strlen(char *str)
 {
 	int	i;
 
@@ -71,7 +71,7 @@ char	**codehandler(char *path)
 	window = callwindow();
 	fd = open(path, O_RDONLY);
 	(callwindow()->map.map) = mapcode(fd, NULL, 0);
-	if (codechecker(window->map.map) == 0)
+	if (codechecker(window->map.map) == 0 || checkpath(window->map.map) == 0)
 		closewin(callwindow());
 	return (window->map.map);
 }
@@ -84,5 +84,6 @@ int	main(int argc, char **argv)
 		createwin(callwindow(), callwindow()->map.map);
 	}
 	else
-		return (write(1, "\33[1;31mError\033[0m\n", 18));
+		return (ft_printf(\
+		"\033[1;34mError.\nTry ./so.long [mapname.ber]\n\033[0m"));
 }

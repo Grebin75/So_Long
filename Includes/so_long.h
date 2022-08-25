@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:20:34 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/23 14:13:47 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:49:01 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "../Getnextline/get_next_line.h"
+# include "../ft_printf/ft_printf.h"
 
 # define W 		119
 # define A 		97
@@ -103,7 +104,7 @@ int			initializeimgs(t_window *window);
 int			readtocreate(char **map);
 int			counterchecker(t_window *window);
 int			lencompare(char **string);
-int			ft_strlen(char *str);
+int			ftt_strlen(char *str);
 int			illegalchar(t_window *window, char *line);
 int			firstandlastwall(char *line);
 int			codechecker(char **map);

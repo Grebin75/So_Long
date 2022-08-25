@@ -6,7 +6,7 @@
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:26:46 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/08/23 14:14:49 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:50:18 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	lencompare(char **string)
 	i = 0;
 	while (i < callwindow()->map.size - 1)
 	{
-		if (ft_strlen(string[i]) != ft_strlen(string[i + 1]))
+		if (ftt_strlen(string[i]) != ftt_strlen(string[i + 1]))
 			return (0);
 		i++;
 	}
@@ -70,4 +70,13 @@ int	counterchecker(t_window *window)
 	if (window->map.exitcount != 1)
 		return (0);
 	return (1);
+}
+
+int	checkpath(char **map)
+{
+	char	**temp;
+
+	temp = malloc((sizeof(char *) * ftt_strlen(callwindow()->map.map[0])));
+	
+	
 }
