@@ -1,15 +1,13 @@
 SRCS		= $(SRCS_DIR)/so_long.c \
 			$(SRCS_DIR)/get_next_line.c \
 			$(SRCS_DIR)/get_next_line_utils.c \
-			$(SRCS_DIR)/mapcinit.c \
-			$(SRCS_DIR)/windowhandler.c \
+			$(SRCS_DIR)/mapchecker.c \
+			$(SRCS_DIR)/maputils1.c \
+			$(SRCS_DIR)/maputils2.c \
 			$(SRCS_DIR)/generalutils.c \
-			$(SRCS_DIR)/keyhandler.c \
-			$(SRCS_DIR)/menu.c \
-			$(SRCS_DIR)/menutils.c \
-			$(SRCS_DIR)/maputils.c \
-			$(SRCS_DIR)/exit.c \
-			$(SRCS_DIR)/list.c \
+			$(SRCS_DIR)/setgame.c \
+			$(SRCS_DIR)/key.c \
+
 
 
 SRCS_DIR	= srcs

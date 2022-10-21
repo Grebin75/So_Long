@@ -1,59 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maputils.c                                         :+:      :+:    :+:   */
+/*   maputils2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 12:57:41 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/09/22 15:07:25 by hcoutinh         ###   ########.fr       */
+/*   Created: 2022/08/26 11:43:53 by hcoutinh          #+#    #+#             */
+/*   Updated: 2022/10/19 14:27:31 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-// CHECK INVALID CHARS AND COUNT VALID CHARS
-void checkchars(char c, int i, int x, int y)
-{
-	if (c != '1' && c != 'C' && c != '0' && c != 'E' && c != 'P' && c != 'X')
-		exitprog(2);
-	if (c == 'P')
-	{
-		callwin()->map[i].pcount += 1;
-		callwin()->map[i].player.x = x;
-		callwin()->map[i].player.y = y;
-	}
-	if (c == 'X')
-		if (!addtolist(callwin()->map[i].enemys, createobj(x, y)))
-			return (3);
-	if (c == 'E')
-		callwin()->map[i].ecount += 1;
-	if (c == 'C')
-		callwin()->map[i].ccount += 1;
-}
-
-// CHECK MAP LENGTH, CHECK MAP WALLS, CHECK CHAR COUNTS
-void	checkformat(char **str, t_map map)
-{
-
-	int x;
-	int y;
-	y = -1;
-	while (str[++y])
-	{
-		x = -1;
-		if (ft_strlen(str[y]) != map.sizex)
-			exitprog(4);
-		while (str[y][++x])
-		{
-			if ((y == 0 || y == map.sizey - 1) || (x == 0 || \
-			x == map.sizex - 1) && (str[y][x] != '1'))
-				return (5);
-		}
-	}
-	if (map.ccount == 0 || map.ecount != 1 || map.pcount != 1)
-		return (6);
-}
 
 // MOVE OR RETURN
 int	checkcase(char **map, int y, int x)
@@ -77,17 +34,38 @@ void	algo(char **map, int y, int x)
 		algo(map, y + 1, x);
 }
 
+// CHECK IF HAVE COINS AND P NEAR E
+void	lastcheck(char **map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		if (ft_strrchr(map[i], 'C'))
+			printerror(1, "Invalid path");
+		if (ft_strrchr(map[i], 'E'))
+		{
+			j = -1;
+			while (map[i][++j] != 'E')
+				;
+			if (!(map[i][j + 1] == 'P' || map[i][j - 1] == 'P' \
+			|| map[i + 1][j] == 'P' || map[i - 1][j] == 'P'))
+				printerror(1, "Invalid path");
+		}
+	}
+}
+
 // CREATE A COPY AND CHECK THE PATH ON THAT COPY
 void	checkpath(char **str, t_map map)
 {
 	char	**temp;
-	int		error;
 	int		i;
 
-	error = 0;
 	temp = copymap(str, map);
 	algo(temp, map.player.y, map.player.x);
-	error = lastcheck(temp);
+	lastcheck(temp);
 	if (temp)
 	{
 		i = -1;
@@ -95,6 +73,4 @@ void	checkpath(char **str, t_map map)
 			free(temp[i]);
 		free(temp);
 	}
-	if (error)
-		exitprog(7);
 }

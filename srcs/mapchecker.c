@@ -5,76 +5,105 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/26 11:42:01 by hcoutinh          #+#    #+#             */
-/*   Updated: 2022/09/22 15:05:03 by hcoutinh         ###   ########.fr       */
+/*   Created: 2022/10/14 14:43:51 by hcoutinh          #+#    #+#             */
+/*   Updated: 2022/10/19 16:47:47 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-/* void	algo(char **map, int y, int x)
+char	**file_to_str(int fd, char **map, int count)
 {
-	if (checkcase(map, y, x - 1))
-		algo(map, y, x - 1);
-	if (checkcase(map, y, x + 1))
-		algo(map, y, x + 1);
-	if (checkcase(map, y - 1, x))
-		algo(map, y - 1, x);
-	if (checkcase(map, y + 1, x))
-		algo(map, y + 1, x);
-}
+	char	*temp;
 
-void	checkpath(char **map)
-{
-	char	**temp;
-	int		error;
-	int		i;
-
-	error = 0;
-	temp = copymap(map);
-	algo(temp, callwin()->player.y, callwin()->player.x);
-	error = lastcheck(temp);
+	temp = get_next_line(fd);
 	if (temp)
+		map = file_to_str(fd, map, count + 1);
+	else
 	{
-		i = -1;
-		while (temp[++i])
-			free(temp[i]);
-		free(temp);
+		map = malloc(sizeof(char *) * (count + 1));
+		this()->map.sizey = count;
 	}
-	if (error)
-		exitprog(1);
+	if (!map)
+		printerror(1, "Error map malloc");
+	if (map)
+		map[count] = temp;
+	return (map);
 }
 
-void	checkformat(char **map)
+void	checkchars(char c, int x, int y)
 {
-	int		y;
-	int		x;
-	t_win	*win;
+	if (c != '1' && c != 'C' && c != '0' && c != 'E' && c != 'P' && c != 'X')
+		printerror(1, "Invalid chars");
+	if (c == 'P')
+	{
+		this()->map.pcount += 1;
+		this()->map.player.x = x;
+		this()->map.player.y = y;
+	}
+	if (c == 'E')
+		this()->map.ecount += 1;
+	if (c == 'C')
+		this()->map.ccount += 1;
+}
+
+void	checkformat(t_map *map)
+{
+	int	x;
+	int	y;
 
 	y = -1;
-	win = callwin();
-	win->map.sizex = ft_strlen(map[0]);
-	while (map[++y])
+	while (map->map[++y])
 	{
 		x = -1;
-		while (map[y][++x])
+		while (map->map[y][++x])
 		{
-			checker(map, x, y);
+			if (((y == 0 || y == map->sizey - 1) || (x == 0 || \
+			x == map->sizex - 1)) && (map->map[y][x] != '1'))
+				printerror(1, "Map isnt surrounded by walls");
 		}
 	}
-	if (win->map.ccount == 0 || win->map.ecount != 1 || win->map.pcount != 1)
-		exitprog(1);
+	if (map->ccount == 0 || map->ecount != 1 || map->pcount != 1)
+		printerror(1, "Missing or extra chars");
+}
+
+void	set_map_values(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (map->map[0] && map->map[0][++map->sizex])
+		;
+	while (map->map[++y])
+	{
+		x = -1;
+		while (map->map[y][++x])
+			checkchars(map->map[y][x], x, y);
+		if (x != map->sizex)
+			printerror(1, "Map isnt rectangular");
+	}
 }
 
 void	checkmap(char *file)
 {
 	int	fd;
 
+	if (ft_strncmp(ft_strrchr(file, '.'), ".ber", 5))
+		printerror(1, "Invalid file");
+	fd = open(file, O_DIRECTORY);
+	if (fd != -1)
+	{
+		close(fd);
+		printerror(1, "It's a directory");
+	}
 	fd = open(file, O_RDONLY);
-	if (ft_strncmp(ft_strrchr(file, '.'), ".ber", 5) || fd == -1)
-		exitprog(1);
-	(callwin()->map.map) = mapcode(fd, NULL, 0);
-	checkformat(callwin()->map.map);
-	checkpath(callwin()->map.map);
+	if (fd == -1)
+		printerror(1, "Invalid file");
+	(this()->map.map) = file_to_str(fd, NULL, 0);
+	if (!(this()->map.map) || !this()->map.map[0])
+		printerror(1, "Empty file");
+	set_map_values(&this()->map);
+	checkformat(&this()->map);
+	checkpath(this()->map.map, this()->map);
 }
- */
